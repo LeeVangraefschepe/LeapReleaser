@@ -1,0 +1,23 @@
+# Application CMake
+add_executable(Example "main.cpp" "Scenes/Sample.h" "Scenes/Sample.cpp")
+target_include_directories(Example PRIVATE ${LEAP_INCLUDE} ${LEAP_AUDIO_INCLUDE} ${LEAP_GRAPHICS_INCLUDE} ${LEAP_INPUT_INCLUDE} ${LEAP_NETWORK_INCLUDE} ${LEAP_PHYSICS_INCLUDE} ${LEAP_UTILS_INCLUDE})
+target_link_libraries(Example PRIVATE ${LEAP_LIB} ${LEAP_AUDIO_LIB} ${LEAP_GRAPHICS_LIB} ${LEAP_INPUT_LIB} ${LEAP_NETWORK_LIB} ${LEAP_PHYSICS_LIB} ${LEAP_UTILS_LIB})
+
+target_include_directories(Example PRIVATE ${GLMIncludeDir} ${FMOD_INCLUDE_DIR} ${GLFW_INCLUDE_DIR} ${PHYSX_INCLUDE_DIR} ${DIRECTX_TEX_INCLUDE_DIR} ${FX11_INCLUDE_DIR})
+target_link_libraries(Example PRIVATE ${FMOD_LIBRARY_DIR} ${GLFW_LIBRARY_DIR} ${PHYSX_LIBRARY_DIR} ${PHYSX_COMMON_LIBRARY_DIR} ${PHYSX_COOKING_LIBRARY_DIR} ${PHYSX_FOUNDATION_LIBRARY_DIR} ${FX11_LIBRARY_DIR})
+
+# Copies used for .exe
+add_custom_command(TARGET Example PRE_LINK
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${FMOD_DLL_DIR} $<TARGET_FILE_DIR:Example>
+    COMMENT "Copying FMOD DLL..."
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PHYSX_DLL_DIR} $<TARGET_FILE_DIR:Example>
+    COMMENT "Copying PHYSX DLL..."
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PHYSX_COMMON_DLL_DIR} $<TARGET_FILE_DIR:Example>
+    COMMENT "Copying PHYSX COMMON DLL..."
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PHYSX_COOKING_DLL_DIR} $<TARGET_FILE_DIR:Example>
+    COMMENT "Copying PHYSX COOKING DLL..."
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PHYSX_FOUNDATION_DLL_DIR} $<TARGET_FILE_DIR:Example>
+    COMMENT "Copying PHYSX FOUNDATION DLL..."
+    COMMAND ${CMAKE_COMMAND} -E copy_directory  ${DATA_FILES} ${DESTINATION_COPY}
+    COMMENT "Copying DATA..."
+)
