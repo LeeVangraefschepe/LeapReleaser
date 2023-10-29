@@ -1,6 +1,6 @@
 #include "Sample.h"
 
-void Voxel::SampleScene::Load(leap::Scene& scene)
+void Example::SampleScene::Load(leap::Scene& scene)
 {
 	scene;
 }

@@ -3,7 +3,7 @@ namespace leap
 {
 	class Scene;
 }
-namespace Voxel
+namespace Example
 {
 	class SampleScene
 	{
