@@ -8,7 +8,7 @@
 
         public static string GenerateEngine(string includeVar, string libVar, string libName)
         {
-            return $"# Subengine CMake\r\nset({includeVar} \"${{CMAKE_CURRENT_SOURCE_DIR}}/include\" CACHE PATH \"\")\r\n\r\nif(CMAKE_BUILD_TYPE STREQUAL \"Debug\")\r\n\tset({libVar} \"${{CMAKE_CURRENT_SOURCE_DIR}}/lib/debug/{libName}.lib\" CACHE PATH \"\")\r\nelse()\r\n\tset({libVar} \"${{CMAKE_CURRENT_SOURCE_DIR}}lib/release/{libName}.lib\" CACHE PATH \"\")\r\nendif()";
+            return $"# Subengine CMake\r\nset({includeVar} \"${{CMAKE_CURRENT_SOURCE_DIR}}/include\" CACHE PATH \"\")\r\n\r\nif(CMAKE_BUILD_TYPE STREQUAL \"Debug\")\r\n\tset({libVar} \"${{CMAKE_CURRENT_SOURCE_DIR}}/lib/debug/{libName}.lib\" CACHE PATH \"\")\r\nelse()\r\n\tset({libVar} \"${{CMAKE_CURRENT_SOURCE_DIR}}/lib/release/{libName}.lib\" CACHE PATH \"\")\r\nendif()";
         }
     }
 }
