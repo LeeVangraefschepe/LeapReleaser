@@ -49,6 +49,7 @@ namespace LeapReleaser
 
             // Write root CMake
             File.WriteAllText($"{baseFolder}/CMakeLists.txt",CMakeHelper.Base);
+            File.WriteAllText($"{baseFolder}/CMakeSettings.json",CMakeHelper.Settings);
 
             // Copy engine data
             Directory.CreateDirectory($"{baseFolder}\\Data");
