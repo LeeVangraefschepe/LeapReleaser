@@ -13,7 +13,7 @@ int main()
 
 	leap::Debug::Log("Hello world");
 	leap::SceneManager::GetInstance().AddScene("Sample", Example::SampleScene::Load);
-	leap::LeapEngine engine{ 1280, 720, std::string{"Example"} };
+	leap::LeapEngine engine{ 1280, 720, "Example" };
 	engine.Run(60);
 	return 0;
 }
