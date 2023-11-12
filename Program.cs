@@ -6,6 +6,13 @@ namespace LeapReleaser
 {
     internal class Program
     {
+        private static void Error(string message)
+        {
+            Console.WriteLine($"Error happend: {message}");
+            Console.WriteLine($"Press enter to exit");
+            Console.ReadLine();
+        }
+
         private static void Main(string[] args)
         {
             // Get leap paths
@@ -17,12 +24,12 @@ namespace LeapReleaser
             // Check if directory is valid
             if (!Directory.Exists(debugPath))
             {
-                Console.WriteLine($"Program exited no valid path for debug. ({debugPath})");
+                Error($"Program exited no valid path for debug. ({debugPath})");
                 return;
             }
             if (!Directory.Exists(releasePath))
             {
-                Console.WriteLine($"Program exited no valid path for release. ({releasePath})");
+                Error($"Program exited no valid path for release. ({releasePath})");
                 return;
             }
 
@@ -30,7 +37,7 @@ namespace LeapReleaser
             var baseFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (!Directory.Exists($"{baseFolder}\\Example"))
             {
-                Console.WriteLine("No example folder found next to the .exe");
+                Error("No example folder found next to the .exe");
                 return;
             }
             
