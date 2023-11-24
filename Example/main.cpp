@@ -1,13 +1,8 @@
+#include "stdafx.h"
 #include <Windows.h>
-#include <Leap.h>
 
-#include <SceneGraph/SceneManager.h>
-
-#include <GameContext/GameContext.h>
 #include <GameContext/Logger/ImGuiLogger.h>
 #include <GameContext/Logger/ConsoleLogger.h>
-
-#include <Debug.h>
 
 // Visual leak detector
 #if _DEBUG
@@ -19,13 +14,24 @@
 
 int main()
 {
+	// Setup loggers
 	leap::GameContext::GetInstance().AddLogger<leap::ImGuiLogger>();
 	leap::GameContext::GetInstance().AddLogger<leap::ConsoleLogger>();
 
-	leap::Debug::Log("Hello world");
-	leap::SceneManager::GetInstance().AddScene("Sample", Example::SampleScene::Load);
+	// Create engine
 	leap::LeapEngine engine{ 1280, 720, "Example" };
-	engine.Run(60);
+	
+	// Set settings after initializing
+	auto afterInitializing = []()
+		{
+			leap::Debug::Log("Hello world");
+			leap::ServiceLocator::GetPhysics().SetEnabledDebugDrawing(true);
+			leap::SceneManager::GetInstance().AddScene("Sample", Example::SampleScene::Load);
+		};
+
+	// Initialize & run engine
+	engine.Run(afterInitializing, 60);
+	
 	return 0;
 }
 

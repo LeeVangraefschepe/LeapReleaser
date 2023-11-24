@@ -1,9 +1,5 @@
+#include "../stdafx.h"
 #include "Sample.h"
-
-#include <SceneGraph/Scene.h>
-#include <Components/RenderComponents/CameraComponent.h>
-#include <Components/RenderComponents/DirectionalLightComponent.h>
-#include <Components/Transform/Transform.h>
 
 void Example::SampleScene::Load(leap::Scene& scene)
 {
